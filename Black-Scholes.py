@@ -11,11 +11,14 @@ def black_scholes_price(S, X, T, r, sigma, option_type):
         price = (X*math.exp(-r*T))*norm.cdf(-d2)-S*norm.cdf(-d1)
     return price
 #Taking user inputs
-S = float(input("Enter current stock price: "))
-X = float(input("Enter the strike price: "))
-T = float(input("Enter the time to maturity in years: "))
-r = float(input("Enter the risk-free rate as a decimal (for example, 0.05): "))
-sigma = float(input("Enter the volatility as a decimal (for example, 0.15): "))
-option_type = input("Enter the option type: ")
-price = black_scholes_price(S, X, T, r, sigma, option_type)
-print("The fair options price is: ", price)
+try:
+    S = float(input("Enter current stock price: "))
+    X = float(input("Enter the strike price: "))
+    T = float(input("Enter the time to maturity in years: "))
+    r = float(input("Enter the risk-free rate as a decimal (for example, 0.05): "))
+    sigma = float(input("Enter the volatility as a decimal (for example, 0.15): "))
+    option_type = input("Enter the option type (for example 'call' or 'put'): ").lower()
+    price = black_scholes_price(S, X, T, r, sigma, option_type)
+    print("The fair options price is: ", price)
+except ValueError:
+    print("Please enter valid inputs.")
